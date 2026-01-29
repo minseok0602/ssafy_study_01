@@ -2,8 +2,8 @@ import java.util.Scanner;
 public class Main {
     static int R;
     static int C;
-    char[][] grid;
-    int result = 0;
+    static char[][] grid;
+    static int result = 0;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         R = sc.nextInt();
@@ -18,16 +18,16 @@ public class Main {
         System.out.println(result);
     }
     public static void dfs(int x, int y, int cnt, char color){
-        if(cnt>2){
+        if(cnt>3){
             return;
         }
-        if(cnt==2){
-            if(x==n-1&&y==n-1)
+        if(cnt==3){
+            if(x==R-1&&y==C-1)
                 result++;
             return;
         }
-        for(int i = x+1;i<n;i++){
-            for(int j =y+1;j<n;j++){
+        for(int i = x+1;i<R;i++){
+            for(int j =y+1;j<C;j++){
                 if(isOut(i,j))
                     continue;
                 if(grid[i][j]!=color){
@@ -36,8 +36,8 @@ public class Main {
             }
         }
     }
-    public boolean isOut(int x, int y){
-        if(x<0||y<0||x>=n||y>=n)
+    public static boolean isOut(int x, int y){
+        if(x<0||y<0||x>=R||y>=C)
             return true;
         return false;
     }
