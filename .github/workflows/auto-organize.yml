@@ -1,0 +1,116 @@
+name: Auto organize bot drops
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+
+jobs:
+  organize:
+    # 액션이 만든 커밋(무한 루프) 방지: 커밋 메시지에 마커가 있으면 스킵
+    if: ${{ !contains(github.event.head_commit.message, '[auto-organize]') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Auto organize new root items into /<actor>/
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ACTOR="${{ github.actor }}"
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+
+          echo "actor=$ACTOR"
+          echo "before=$BEFORE"
+          echo "after=$AFTER"
+
+          # 이동 대상(루트 신규 생성) 목록 만들기
+          # - before..after에서 "추가(A)"된 파일/폴더 경로
+          # - 최상위(첫 경로 컴포넌트)만 추출
+          # - .github, README 등은 제외
+          mapfile -t TOPS < <(
+            git diff --name-status "$BEFORE" "$AFTER" \
+              | awk '$1=="A"{print $2}' \
+              | awk -F/ '{print $1}' \
+              | sort -u
+          )
+
+          if [ "${#TOPS[@]}" -eq 0 ]; then
+            echo "No added paths. Nothing to do."
+            exit 0
+          fi
+
+          echo "Top-level candidates:"
+          printf ' - %s\n' "${TOPS[@]}"
+
+          # 제외할 루트 항목(필요하면 추가)
+          EXCLUDES=(
+            ".github"
+            ".gitignore"
+            "README.md"
+            "LICENSE"
+          )
+
+          is_excluded () {
+            local x="$1"
+            for e in "${EXCLUDES[@]}"; do
+              if [ "$x" = "$e" ]; then return 0; fi
+            done
+            return 1
+          }
+
+          DEST="$ACTOR"
+          mkdir -p "$DEST"
+
+          moved_any=0
+
+          for item in "${TOPS[@]}"; do
+            # 빈 문자열/이상값 방지
+            [ -z "$item" ] && continue
+
+            # 제외 목록 스킵
+            if is_excluded "$item"; then
+              echo "Skip excluded: $item"
+              continue
+            fi
+
+            # 이미 DEST 폴더 자체면 스킵
+            if [ "$item" = "$DEST" ]; then
+              echo "Skip actor folder itself: $item"
+              continue
+            fi
+
+            # 실제로 워킹트리에 존재하는지 체크
+            if [ ! -e "$item" ]; then
+              echo "Skip (not exists in working tree): $item"
+              continue
+            fi
+
+            # 이미 다른 사람 폴더 아래에 들어간 구조면(최상위가 사람폴더라면) 스킵하고 싶을 수 있음
+            # -> 여기서는 최상위만 보므로, 그냥 이동해버리면 꼬일 수 있어.
+            #    원하면 이 조건을 더 강화 가능.
+            echo "Move: $item -> $DEST/$item"
+            git mv "$item" "$DEST/$item"
+            moved_any=1
+          done
+
+          if [ "$moved_any" -eq 0 ]; then
+            echo "Nothing moved."
+            exit 0
+          fi
+
+          # 커밋 & 푸시
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git status --porcelain
+          git commit -m "[auto-organize] Move root drops into /$DEST/"
+          git push
