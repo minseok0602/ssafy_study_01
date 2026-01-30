@@ -12,16 +12,16 @@
 
 | |1|2|3|
 |:-:|:-:|:-:|:-:|
-|1주차(02.02~02.08 / 스택 & 큐)|||
-|2주차(02.09~02.15 / 구현)|||
-|3주차(02.16~02.22 / 완전탐색)|||
-|4주차(02.23~03.01 / DFS & BFS)|||
+|1주차(02.02~02.08 / 스택 & 큐)|[BOJ 1918 : 후위 표기식](https://www.acmicpc.net/problem/1918)|[BOJ 1914 : 하노이탑](https://www.acmicpc.net/problem/1914)|[BOJ 3190 : 뱀](https://www.acmicpc.net/problem/3190)|
+|2주차(02.09~02.15 / 구현)||||
+|3주차(02.16~02.22 / 완전탐색)||||
+|4주차(02.23~03.01 / DFS & BFS)||||
 
 ## 📍 Progress Record
 |  | 송희준 | 오민석 | 황문규 |
 | :---: | :---: | :---: | :---: |
 | Language | <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"> | <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"> | <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"> 
-| Week 01 | ✅ | ✅ | ✅ |
+| Week 01 |  |  |  |
 
 | 업로드 횟수 | 표기 |
 | :---: | :---: |
