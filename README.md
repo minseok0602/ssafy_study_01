@@ -59,7 +59,7 @@ BOJ_17658.java
 
 ---
 
-# 📍 Commit Message Convention (코테 전용 ⭐)
+# 📍 Commit Message Convention
 
 | 타입 | 의미 |
 |-------|----------------|
