@@ -17,7 +17,7 @@ class Solution
         int T;
         T=Integer.parseInt(br.readLine());
         StringBuilder sb = new StringBuilder();
-     
+      
         for(int test_case = 1; test_case <= T; test_case++)
         {
             sb.append("#").append(test_case+" ");
@@ -69,7 +69,7 @@ class Solution
             cur_dir='<';
         else
             cur_dir='>';
-         
+          
         map[cur_x][cur_y] = cur_dir;
         int new_x = cur_x+dir[direciton][0];
         int new_y = cur_y+dir[direciton][1];
@@ -79,7 +79,7 @@ class Solution
             cur_x = new_x;
             cur_y = new_y;
         }
-         
+          
     }
     public static void shoot(char[][] map) {
         switch(map[cur_x][cur_y]) {
