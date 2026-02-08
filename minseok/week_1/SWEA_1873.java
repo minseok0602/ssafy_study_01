@@ -1,4 +1,5 @@
-package algo;
+package com.ssafy.test;
+
 import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,6 +7,7 @@ class Solution
 {
     // up,down,left,right
     static int[][] dir = {{-1,0},{1,0},{0,-1},{0,1}};
+    static char[] dir_char = {'^','v','<','>'};
     static final int UP = 0;
     static final int DOWN = 1;
     static final int LEFT = 2;
@@ -17,7 +19,7 @@ class Solution
         int T;
         T=Integer.parseInt(br.readLine());
         StringBuilder sb = new StringBuilder();
-      
+
         for(int test_case = 1; test_case <= T; test_case++)
         {
             sb.append("#").append(test_case+" ");
@@ -40,14 +42,14 @@ class Solution
                 }
             }
             br.readLine();
-            String command = br.readLine(); 
+            String command = br.readLine();
             for(char c : command.toCharArray()) {
                 switch(c) {
-                case 'U' : move(map,UP); break;
-                case 'D' : move(map,DOWN); break;
-                case 'L' : move(map,LEFT); break;
-                case 'R' :move(map,RIGHT); break;
-                case 'S' : shoot(map);
+                    case 'U' : move(map,UP); break;
+                    case 'D' : move(map,DOWN); break;
+                    case 'L' : move(map,LEFT); break;
+                    case 'R' :move(map,RIGHT); break;
+                    case 'S' : shoot(map);
                 }
             }
             for(int i = 0;i<n;i++) {
@@ -57,36 +59,27 @@ class Solution
                 sb.append('\n');
             }
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
-    public static void move(char[][] map,int direciton) {
-        char cur_dir = ' ';
-        if(direciton==0)
-            cur_dir='^';
-        else if(direciton==1)
-            cur_dir='v';
-        else if(direciton==2)
-            cur_dir='<';
-        else
-            cur_dir='>';
-          
+    public static void move(char[][] map,int direction){
+        char cur_dir = dir_char[direction];
         map[cur_x][cur_y] = cur_dir;
-        int new_x = cur_x+dir[direciton][0];
-        int new_y = cur_y+dir[direciton][1];
+        int new_x = cur_x+dir[direction][0];
+        int new_y = cur_y+dir[direction][1];
         if(!cant_go(map,new_x,new_y)) {
             map[cur_x][cur_y] = '.';
             map[new_x][new_y] = cur_dir;
             cur_x = new_x;
             cur_y = new_y;
         }
-          
+
     }
     public static void shoot(char[][] map) {
         switch(map[cur_x][cur_y]) {
-        case '^' : shoot(map,0); break;
-        case 'v' : shoot(map,1); break;
-        case '<' : shoot(map,2); break;
-        default : shoot(map,3); break;
+            case '^' : shoot(map,UP); break;
+            case 'v' : shoot(map,DOWN); break;
+            case '<' : shoot(map,LEFT); break;
+            case '>' : shoot(map,RIGHT); break;
         }
     }
     public static void shoot(char[][] map,int direction) {
@@ -96,9 +89,8 @@ class Solution
             x+=dir[direction][0];
             y+=dir[direction][1];
         }
-        if(!is_out(map,x,y)) {
-            if(map[x][y]=='*')
-                map[x][y] = '.';
+        if(!is_out(map,x,y)&&map[x][y]=='*') {
+            map[x][y] = '.';
         }
     }
     public static boolean cant_go(char[][] map,int x, int y) {
