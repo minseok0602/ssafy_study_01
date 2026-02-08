@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class SWEA1873 {
+public class SWEA_1873 {
 	private static int H, W, curRow, curCol, curDir;
 	private static char[][] map;
 	
