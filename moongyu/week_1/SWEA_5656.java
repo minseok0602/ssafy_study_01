@@ -71,40 +71,36 @@ public class SWEA_5656 {
     }
 
     static int explode(int[][] map, int sr, int sc) {
-        int[] qr = new int[H * W];
-        int[] qc = new int[H * W];
-        int head = 0, tail = 0;
+    Queue<int[]> queue = new ArrayDeque<>();
+    
+    queue.offer(new int[]{sr, sc});
+    int removed = 0;
 
-        qr[tail] = sr;
-        qc[tail] = sc;
-        tail++;
+    while (!queue.isEmpty()) {
+        int[] curr = queue.poll();
+        int r = curr[0];
+        int c = curr[1];
 
-        int removed = 0;
+        int power = map[r][c];
+        if (power == 0) continue;
 
-        while (head < tail) {
-            int r = qr[head];
-            int c = qc[head];
-            head++;
+        map[r][c] = 0;
+        removed++;
 
-            int power = map[r][c];
-            if (power == 0) continue;
-
-            map[r][c] = 0;
-            removed++;
-
+        if (power > 1) {
             for (int d = 0; d < 4; d++) {
                 for (int k = 1; k < power; k++) {
                     int nr = r + dr[d] * k;
                     int nc = c + dc[d] * k;
+
                     if (nr < 0 || nr >= H || nc < 0 || nc >= W) break;
                     if (map[nr][nc] == 0) continue;
-                    qr[tail] = nr;
-                    qc[tail] = nc;
-                    tail++;
+
+                    queue.offer(new int[]{nr, nc});
+                    }
                 }
             }
         }
-
         return removed;
     }
 
