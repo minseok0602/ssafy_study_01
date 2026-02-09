@@ -34,12 +34,12 @@ BOJ_17658.java
 
 # 📅 일정표 (매주 6문제)
 
-| |1|2|3|4|5|6|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|1주차(02.02~02.08)|[SWEA 1961 : 숫자 배열 회전](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5Pq-OKAVYDFAUq)|[SWEA 12712 : 파리퇴치 3](https://swexpertacademy.com/main/code/userProblem/userProblemDetail.do?contestProbId=AXuARWAqDkQDFARa)|[SWEA 1873 : 상호의 배틀필드](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5LyE7KD2ADFAXc)|[SWEA 2382 : 미생물 격리](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV597vbqAH0DFAVl)|[SWEA 5644 : 무선 충전](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRDL1aeugDFAUo)|[SWEA 5656 : 벽돌깨기](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRQm6qfL0DFAUo)|
-|2주차(02.09~02.15)|||||||
-|3주차(02.16~02.22)|||||||
+| |1|2|3|4|5|6|7|8|9|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|1주차(02.02~02.08)|[SWEA 1961 : 숫자 배열 회전](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5Pq-OKAVYDFAUq)|[SWEA 12712 : 파리퇴치 3](https://swexpertacademy.com/main/code/userProblem/userProblemDetail.do?contestProbId=AXuARWAqDkQDFARa)|[SWEA 1873 : 상호의 배틀필드](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5LyE7KD2ADFAXc)|[SWEA 2382 : 미생물 격리](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV597vbqAH0DFAVl)|[SWEA 5644 : 무선 충전](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRDL1aeugDFAUo)|[SWEA 5656 : 벽돌깨기](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRQm6qfL0DFAUo)|-|-|-|
+|2주차 & 3주차(02.09~02.22)|[SWEA 5650 : 핀볼게임](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRF8s6ezEDFAUo)|[SWEA 5658 : 보물상자 비밀번호](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRUN9KfZ8DFAUo)|[SWEA 1767 : 프로세서 연결하기](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV4suNtaXFEDFAUf)|[SWEA 2117 : 홈 방범 서비스](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5V61LqAf8DFAWu)|[SWEA 1868 : 파핑파핑 지뢰찾기](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5LwsHaD1MDFAXc)|[SWEA 4193 : 수영대회 결승전](https://swexpertacademy.com/main/code/userProblem/userProblemDetail.do?contestProbId=AWKaG6_6AGQDFARV)|[SWEA 7465 : 창용 마을 무리의 개수](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWngfZVa9XwDFAQU)|[SWEA 5653 : 줄기세포배양](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRJ8EKe48DFAUo)|[SWEA 2105 : 디저트 카페](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5VwAr6APYDFAWu)|
 |4주차(02.23~03.01)|||||||
+||||||||
 
 ---
 
@@ -48,7 +48,8 @@ BOJ_17658.java
 |  | 송희준 | 오민석 | 황문규 |
 | :---: | :---: | :---: | :---: |
 | Language | <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"> | <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"> | <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"> |
-| Week 01 |  |  |  |
+| Week 01 | ✅ | ✅ | ✅ |
+| Week 02 |  |  |  |
 
 | 업로드 횟수 | 표기 |
 | :---: | :---: |
