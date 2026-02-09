@@ -1,3 +1,6 @@
+package study.week1;
+
+
 import java.io.*;
 import java.util.*;
 
@@ -10,12 +13,12 @@ public class SWEA2382 {
         }
     }
 
-    static int N, M, K;
+    static int N, M, K;// 격자크기,격리시간, 군집 수
     static int[] dr = {-1, 1, 0, 0};
     static int[] dc = {0, 0, -1, 1};
 
-    static ArrayList<Pair> table;
-    static ArrayList<Pair>[][] board;
+    static ArrayList<Pair> table; // 미생물 군집에 대한 정보를 저장
+    static ArrayList<Pair>[][] board; // 격자에 군집리스트넣은 3차원 배열
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,6 +26,8 @@ public class SWEA2382 {
         int T = Integer.parseInt(br.readLine());
 
         for (int tc = 1; tc <= T; tc++) {
+        	
+        	// 입력 받기
             StringTokenizer st = new StringTokenizer(br.readLine());
             N = Integer.parseInt(st.nextToken());
             M = Integer.parseInt(st.nextToken());
@@ -34,7 +39,7 @@ public class SWEA2382 {
                 for (int j = 0; j < N; j++) board[i][j] = new ArrayList<>();
             }
 
-            for (int i = 0; i < K; i++) {
+            for (int i = 0; i < K; i++) { // 군집 정보 저장
                 st = new StringTokenizer(br.readLine());
                 int r = Integer.parseInt(st.nextToken());
                 int c = Integer.parseInt(st.nextToken());
@@ -42,7 +47,8 @@ public class SWEA2382 {
                 int dir = Integer.parseInt(st.nextToken()) - 1; // 1~4 -> 0~3
                 table.add(new Pair(r, c, num, dir));
             }
-
+            
+            ////////시뮬레이션 시작///////
             while (M-- > 0) simulation();
 
             int total = 0;
@@ -85,13 +91,15 @@ public class SWEA2382 {
             for (int j = 0; j < N; j++) {
                 ArrayList<Pair> cell = board[i][j];
                 int size = cell.size();
-                if (size == 0) continue;
+                if (size == 0) continue; //군집이 없다
 
-                if (size == 1) {
+                if (size == 1) {//군집이 하나다.
                     next.add(cell.get(0));
                     continue;
                 }
-
+                
+                
+                //군집이 2개 이상 일때
                 int sum = 0;
                 Pair maxPair = null;
 
@@ -103,9 +111,6 @@ public class SWEA2382 {
                 // maxPair만 남기고 합친 값/방향 적용
                 maxPair.num = sum;
 
-                // cell 정리(선택사항: 디버깅용으로 일관성 유지)
-                cell.clear();
-                cell.add(maxPair);
 
                 next.add(maxPair);
             }
