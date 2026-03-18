@@ -1,33 +1,26 @@
 import java.util.*;
 class Solution {
-    static ArrayList<ArrayList<int[]>> graph;
     // 각 파이프 번호마다, 해당 파이프로 직접 연결되어있는 배양체 쌍들을 저장
     static HashMap<Integer,ArrayList<int[]>> pipe_map;
     static int answer = 1;
     int k;
     int n;
     public int solution(int n, int infection, int[][] edges, int k) {
-        graph = new ArrayList<>();
         pipe_map = new HashMap<>();
         this.k = k;
         this.n = n;
         boolean[] is_infect = new boolean[n+1];
         is_infect[infection] = true;
-        for(int i = 0;i<=n;i++){
-            graph.add(new ArrayList<>());
-        }
+
         
         
         for(int i =0 ;i<edges.length;i++){
-            graph.get(edges[i][0]).add(new int[]{edges[i][1],edges[i][2]});
-            graph.get(edges[i][1]).add(new int[]{edges[i][0],edges[i][2]});
             if(!pipe_map.containsKey(edges[i][2])){
                 pipe_map.put(edges[i][2],new ArrayList<>());
             }
             pipe_map.get(edges[i][2]).add(new int[]{edges[i][0],edges[i][1]});
             pipe_map.get(edges[i][2]).add(new int[]{edges[i][1],edges[i][0]});
         }
-        //graph.get(i)에는 i노드와 연결된 각 노드들이 int[]으로 나열돼있음 grpah.get(i) 가 {j,x} -> i는 j와 직접 연결되어 있고, 이때 파이프 종류는 x
         dfs(0,1,is_infect);
         return answer;
     }
